@@ -1,39 +1,21 @@
-<html>
-<head>
-<style>
-center.img {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 250px;
-    height:275px;
-}
+<div>
+  This page contains  <%= Dir[File.dirname(__FILE__) + "/pictures/*"].length %> mini-pictures of Rigs of Rods mods.<br>
+  You download the mod by searching the filename <a target="_blank" href="http://archives.rigsofrods.net/repo">here</a><br>
+  Click on an image to enlarge it
+</div>
+<hr>
 
-
-div.desc {
-    padding: 15px;
-    text-align: center;
-    word-wrap: break-word;
-}
-</style>
-</head>
-<body>
-
-    <div>
-        This page contains  <%= Dir[File.dirname(__FILE__) + "/pictures/*"].length %> mini-pictures of Rigs of Rods mods.<br>
-        You download the mod by searching the filename <a target="_blank" href="http://archives.rigsofrods.net/repo">here</a>
-    </div>
-    <hr>
-
-
-<% Dir.foreach(File.dirname(__FILE__) + "/pictures") do |file| %>
+<div id="images">
+  <% Dir.foreach(File.dirname(__FILE__) + "/pictures") do |file| %>
     <% next if file == '.' or file == '..' %>
     <center class="img">
-        <img src="<%="pictures/" + file %>" width="200" height="200">
-        <div class="desc"><%= file.split(".zip_")[0] %></div>
+      <img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
+      <div class="desc"><%= file.split(".zip_")[0] %></div>
     </center>
 
-<% end %>
+  <% end %>
+</div>
 
-</body>
-</html>
+<script>
+    new Viewer(document.getElementById('images'));
+</script>
