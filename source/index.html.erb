@@ -6,13 +6,12 @@
 <hr>
 
 <div id="images">
-  <% Dir.foreach(File.dirname(__FILE__) + "/pictures") do |file| %>
+  <% Dir.foreach(File.dirname(__FILE__) + "/pictures/") do |file| %>
     <% next if file == '.' or file == '..' %>
     <center class="img">
       <img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
       <div class="desc"><%= file.split(".zip_")[0] %></div>
     </center>
-
   <% end %>
 </div>
 
