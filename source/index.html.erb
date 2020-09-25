@@ -1,20 +1,43 @@
+<style>
+    center.img {
+		margin: 5px;
+		border: 1px solid #ccc;
+		float: left;
+		width: 250px;
+		height: 300px;
+    }
+
+	div.desc {
+   		padding: 5px;
+    	text-align: center;
+    	word-wrap: break-word;
+	}
+</style>
+
 <div>
-  This page contains  <%= Dir[File.dirname(__FILE__) + "/pictures/*"].length %> mini-pictures of Rigs of Rods mods.<br>
-  You download the mod by searching the filename <a target="_blank" href="http://archives.rigsofrods.net/repo">here</a><br>
-  Click on an image to enlarge it
+	This page contains  <%= Dir[File.dirname(__FILE__) + "/pictures/*"].length %> mini-pictures of Rigs of Rods mods.<br>
+	Click on an image to enlarge it
 </div>
 <hr>
 
 <div id="images">
   <% Dir.foreach(File.dirname(__FILE__) + "/pictures/") do |file| %>
     <% next if file == '.' or file == '..' %>
+	<% file_name = file.split(/\.(skin)?zip_/i)[0] %>
+	<% file_link = file.split(/zip_(?!.*zip_)/i)[0] %>
     <center class="img">
-      <img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
-      <div class="desc"><%= file.split(".zip_")[0] %></div>
+    	<div class="desc" onclick="copyTextToClipboard('<%= file_name %>')"><%= file_name %></div>
+      	<a href="<%= "pictures/" + file %>" target="_blank">
+        	<img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
+      	</a>
+    	<a href="<%= "https://cloudflare-ipfs.com/ipfs/QmdNBzd1wCFK113qYLAw6gRCPujbh18tSZLsfL35HEZXSn/#{file_link}zip" %>" >Download</a>
     </center>
   <% end %>
 </div>
 
 <script>
-    new Viewer(document.getElementById('images'));
+async function copyTextToClipboard(copyText) {
+	await navigator.clipboard.writeText(copyText)
+	alert(`Copied "${copyText}" to clipboard`)
+} 
 </script>
