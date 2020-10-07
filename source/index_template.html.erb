@@ -1,0 +1,15 @@
+<div>
+	This site contains  <%= file_list.length %> pages of mini-pictures from the Rigs of Rods repo archive.<br>
+</div>
+<hr>
+
+<% file_list.each_with_index do |list, i| %>
+<center class="img">
+	<div class="desc">Page <%= i %></div>
+	<a href="page_<%= i %>.html">
+		<img src="<%= "pictures/" + list[0] %>" width="200" height="200" style="cursor: pointer">
+		<br>
+		Go to page <%= i %>
+	</a>
+</center>
+<% end %>
