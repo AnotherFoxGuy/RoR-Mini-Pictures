@@ -13,10 +13,12 @@
   <% file_link = file.split(/zip_(?!.*zip_)/i)[0] %>
   <center class="img">
       <div class="desc"><%= file_name %></div>
-        <a href="<%= "pictures/" + file %>" target="_blank">
-          <img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
-        </a>
+      <img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
       <a href="<%= "https://cloudflare-ipfs.com/ipfs/QmdNBzd1wCFK113qYLAw6gRCPujbh18tSZLsfL35HEZXSn/#{file_link}zip" %>" >Download</a>
   </center>
 <% end %>
 </div>
+
+<script>
+    new Viewer(document.getElementById('images'));
+</script>
