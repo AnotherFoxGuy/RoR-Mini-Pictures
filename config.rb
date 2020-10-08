@@ -2,17 +2,17 @@
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
 activate :autoprefixer do |prefix|
-  prefix.browsers = "last 2 versions"
+  prefix.browsers = 'last 2 versions'
 end
 
-base_dir = File.dirname(__FILE__) + "/source/pictures/"
-file_list = Dir[base_dir + "*.*"].map {|f| f.sub!(base_dir,"")}.each_slice(100).to_a
+base_dir = File.dirname(__FILE__) + '/source/pictures/'
+file_list = Dir[base_dir + '*.*'].map { |f| f.sub!(base_dir, '') }.each_slice(100).to_a
 file_list.sort
 
-proxy "index.html", "/index_template.html", :locals => { :file_list => file_list }, :ignore => true
+proxy 'index.html', '/index_template.html', locals: { file_list: file_list }, ignore: true
 
 file_list.each_with_index do |list, i|
-  proxy "/page_#{i}.html", "/page.html", :locals => { :file_list => list, :index => i, :max => file_list.length }, :ignore => true
+  proxy "/page_#{i}.html", '/page.html', locals: { file_list: list, index: i, max: file_list.length }, ignore: true
 end
 
 # Layouts
@@ -50,7 +50,8 @@ page '/*.txt', layout: false
 # Build-specific configuration
 # https://middlemanapp.com/advanced/configuration/#environment-specific-settings
 
-# configure :build do
-#   activate :minify_css
-#   activate :minify_javascript
-# end
+configure :build do
+  #   activate :minify_css
+  #   activate :minify_javascript
+  activate :minify_html
+end

@@ -1,27 +1,28 @@
 <html>
-<head>
-  <link href="https://cdn.statically.io/gh/fengyuanchen/viewerjs/v1.7.1/dist/viewer.min.css" rel="stylesheet">
-  <script src="https://cdn.statically.io/gh/fengyuanchen/viewerjs/v1.7.1/dist/viewer.min.js"></script>
-  <style>
+  <head>
+    <title>RoR Mini Pictures</title>
+    <link href="viewer.min.css" rel="stylesheet" />
+    <script src="viewer.min.js"></script>
+    <style>
       center.img {
-      margin: 5px;
-      border: 1px solid #ccc;
-      float: left;
-      width: 250px;
-      height: 300px;
+        margin: 5px;
+        border: 1px solid #ccc;
+        float: left;
+        width: 250px;
+        height: 300px;
       }
 
-    div.desc {
+      div.desc {
         padding: 5px;
         text-align: center;
         word-wrap: break-word;
-    }
-    a {
-      padding: 5px;
-    }
-  </style>
-</head>
-<body>
-  <%= yield %>
-</body>
+      }
+      a {
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
 </html>
