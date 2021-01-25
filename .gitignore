@@ -6,3 +6,4 @@ build/
 build.zip
 .idea/
 tmp/
+node_modules

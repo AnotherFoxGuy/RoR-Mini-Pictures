@@ -2,26 +2,20 @@
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
 activate :autoprefixer do |prefix|
-  prefix.browsers = 'last 2 versions'
+  prefix.browsers = "last 2 versions"
 end
 
-base_dir = File.dirname(__FILE__) + '/source/pictures/'
-file_list = Dir[base_dir + '*.*'].map { |f| f.sub!(base_dir, '') }.each_slice(100).to_a
-file_list.sort
-
-proxy 'index.html', '/index_template.html', locals: { file_list: file_list }, ignore: true
-
-file_list.each_with_index do |list, i|
-  proxy "/page_#{i}.html", '/page.html', locals: { file_list: list, index: i, max: file_list.length }, ignore: true
+data.mini_pictures.each_slice(100).each_with_index do |list, i|
+  proxy "/page_#{i}.html", "/page.html", locals: { mini_pictures: list, index: i, max: 29 }, ignore: true
 end
 
 # Layouts
 # https://middlemanapp.com/basics/layouts/
 
 # Per-page layout changes
-page '/*.xml', layout: false
-page '/*.json', layout: false
-page '/*.txt', layout: false
+page "/*.xml", layout: false
+page "/*.json", layout: false
+page "/*.txt", layout: false
 
 # With alternative layout
 # page '/path/to/file.html', layout: 'other_layout'

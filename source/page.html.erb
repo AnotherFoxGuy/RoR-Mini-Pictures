@@ -1,24 +1,36 @@
-<div>
-    This page contains <%= file_list.length %> mini-pictures of Rigs of Rods mods.<br>
-    Click on an image to enlarge it <br>
-    <%= "<a href=\"page_#{index - 1}.html\" >Previous page</a>" if index - 1 >= 0 %>
-    <a href="index.html" >Home</a>
-    <%= "<a href=\"page_#{index + 1}.html\" >Next page</a>" if index + 1 < max %>
-</div>
-<hr>
+<div class="grid-container full">
+	<div class="grid-x grid-padding-x ">
+        <div class="cell text-center">This page contains <%= mini_pictures.length %> mini-pictures of Rigs of Rods mods.</div>
+        <div class="cell text-center">Click on an image to enlarge it</div>
+        <div class="cell text-center">
+            <%= "<a href=\"page_#{index - 1}.html\" >Previous page</a>  | " if index - 1 >= 0 %>
+            <a href="pictures.html" >Home</a>
+            <%= " | <a href=\"page_#{index + 1}.html\" >Next page</a>" if index + 1 < max %>
+        </div>
+	</div>
 
-<div id="images">
-<% file_list.each do |file| %>
-  <% file_name = file.split(/\.(skin)?zip_/i)[0] %>
-  <% file_link = file.split(/zip_(?!.*zip_)/i)[0] %>
-  <center class="img">
-      <div class="desc"><%= file_name %></div>
-      <img src="<%= "pictures/" + file %>" width="200" height="200" style="cursor: pointer">
-      <a href="<%= "https://cloudflare-ipfs.com/ipfs/QmdNBzd1wCFK113qYLAw6gRCPujbh18tSZLsfL35HEZXSn/#{file_link}zip" %>" >Download</a>
-  </center>
-<% end %>
+    <div id="images" class="grid-x grid-padding-x small-up-2 large-up-6">
+        <% mini_pictures.each do |file| %>
+            <% file_name = file.name.split(/\.(skin)?zip_/i)[0] %>
+            <% file_link = file.name.split(/zip_(?!.*zip_)/i)[0] %>
+            <div class="minipic-box cell">
+                <div class="minipic-box-desc cell"><%= file_name %></div>
+                <div class="minipic-box-img cell">
+                    <img src="<%= "images/" + file.name %>" width="250" height="250" style="cursor: pointer">
+                </div>
+                <a href="<%= "https://cloudflare-ipfs.com/ipfs/QmdNBzd1wCFK113qYLAw6gRCPujbh18tSZLsfL35HEZXSn/#{file_link}zip" %>" >Download</a>
+            </div>
+        <% end %>
+    </div>
+    <div class="grid-x grid-padding-x" style="padding-bottom: 20px">
+        <div class="cell text-center">
+            <%= "<a href=\"page_#{index - 1}.html\" >Previous page</a>  | " if index - 1 >= 0 %>
+            <a href="pictures.html" >Home</a>
+            <%= " | <a href=\"page_#{index + 1}.html\" >Next page</a>" if index + 1 < max %>
+        </div>
+	</div>
+	
 </div>
-
 <script>
     new Viewer(document.getElementById('images'));
 </script>

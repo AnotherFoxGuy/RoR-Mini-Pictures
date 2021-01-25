@@ -1,0 +1,22 @@
+<% mini_pictures_paged = data.mini_pictures.each_slice(100).to_a %>
+<div class="grid-container full">
+	<div class="grid-x grid-padding-x text-center">
+		<div class="cell">This site contains <%= mini_pictures_paged.length %> pages of mini-pictures from the Rigs of Rods repo archive.</div>
+		<div class="cell"><a href="index.html" >Home</a></div>
+	</div>
+	<hr>
+
+	<div class="grid-x grid-padding-x small-up-2 large-up-6">
+		<% mini_pictures_paged.each_with_index do |list, i| %>
+		<div class="minipic-box cell">
+			<div class="minipic-box-desc cell">Page <%= i %></div>
+			<a href="page_<%= i %>.html">
+				<div class="minipic-box-img cell">
+					<img src="<%= "/images/" + list[0].name %>" width="250" height="250" style="cursor: pointer">
+				</div>
+				Go to page <%= i %>
+			</a>
+		</div>
+		<% end %>
+	</div>
+</div>
