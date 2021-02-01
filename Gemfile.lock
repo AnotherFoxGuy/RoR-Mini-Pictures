@@ -10,7 +10,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.8.6.5)
       execjs
-    backports (3.20.1)
+    backports (3.20.2)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -21,7 +21,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     fast_blank (1.0.0)
-    fastimage (2.2.1)
+    fastimage (2.2.2)
     ffi (1.14.2)
     ffi (1.14.2-java)
     ffi (1.14.2-x86-mingw32)
@@ -91,6 +91,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rexml (3.2.4)
+    rufo (0.12.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     servolux (0.13.0)
@@ -117,6 +118,7 @@ DEPENDENCIES
   middleman (~> 4.2)
   middleman-autoprefixer (~> 2.7)
   middleman-minify-html
+  rufo
   tzinfo-data
   wdm (~> 0.1)
 

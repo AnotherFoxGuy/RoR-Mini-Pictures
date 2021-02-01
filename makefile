@@ -12,5 +12,6 @@ clean:
 	rm -v build.zip
 
 update:
-	wget https://github.com/fengyuanchen/viewerjs/raw/master/dist/viewer.min.css -O source/viewer.min.css
-	wget https://github.com/fengyuanchen/viewerjs/raw/master/dist/viewer.min.js -O source/viewer.min.js 
+	wget https://cdn.statically.io/gh/fengyuanchen/viewerjs/master/dist/viewer.min.css -O source/viewer.min.css
+	wget https://cdn.statically.io/gh/fengyuanchen/viewerjs/master/dist/viewer.min.js -O source/viewer.min.js 
+	wget https://cdn.statically.io/gh/foundation/foundation-sites/master/dist/css/foundation.min.css  -O source/foundation.min.css
