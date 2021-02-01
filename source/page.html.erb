@@ -18,7 +18,7 @@
                 <div class="minipic-box-img cell">
                     <img src="<%= "images/" + file.name %>" width="250" height="250" style="cursor: pointer">
                 </div>
-                <a href="<%= "https://cloudflare-ipfs.com/ipfs/QmdNBzd1wCFK113qYLAw6gRCPujbh18tSZLsfL35HEZXSn/#{file_link}zip" %>" >Download</a>
+                <a href="<%= "#{config[:ipfs_gateway]}/QmdNBzd1wCFK113qYLAw6gRCPujbh18tSZLsfL35HEZXSn/#{file_link}zip" %>" >Download</a>
             </div>
         <% end %>
     </div>

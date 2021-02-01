@@ -7,23 +7,6 @@
   <hr>
   <div class="cell">
     <table id="fileTable">
-        <tr class="header">
-            <th>Name</th>
-            <th>DL Link</th>
-            <th>Picture</th>
-        </tr>
-        <% data.repofiles.each do |file| %>
-          <% found = data.mini_pictures.find { |i| i.name.include? file.name } %>
-          <tr>
-              <td><%= file.name %></td>
-              <td><a href="https://cloudflare-ipfs.com/ipfs/<%= file.path %>">Download</a></td>
-              <td>
-              <% if found %>
-                  <a onclick="showModal('<%= found.name %>')">Picture</a>
-              <% end %>
-              </td>
-          </tr>
-        <% end %>
     </table> 
   </div>
 </div>
@@ -41,23 +24,54 @@
   <div id="caption"></div>
 </div>
 
-<script>
-function searchFiles() {
-  // Declare variables
-  let input, filter, table, tr, td, i, txtValue
-  input = document.getElementById("searchBox")
-  filter = input.value.toUpperCase()
-  table = document.getElementById("fileTable")
-  tr = table.getElementsByTagName("tr")
+<script src="fuse.min.js"></script>
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0]
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      txtValue.toUpperCase().indexOf(filter) > -1 ? tr[i].style.display = "" : tr[i].style.display = "none"
-    }
+<script>
+const options = {
+  includeScore: true,
+  keys: ['name', 'img'],
+  useExtendedSearch: true,
+  ignoreLocation: true,
+  threshold: 0.1
+}
+const fuse = new Fuse([], options)
+
+let repofiles = []
+
+fetch('repofiles.json')
+  .then(response => response.json())
+  .then(data => {
+    repofiles = data
+    fuse.setCollection(data)
+    searchFiles()
+  });
+
+function searchFiles() {
+  const input = document.getElementById("searchBox").value
+  let table = `<tr class="header"><th>Name</th><th>DL Link</th><th>Picture</th></tr>`
+
+  if(input != ""){
+    const result = fuse.search(input)
+    console.log(result)
+    result.forEach(element => {
+      table = table + renderTableElement(element.item)
+    });
   }
+  else{
+    repofiles.forEach(element => {
+      table = table + renderTableElement(element)
+    });
+  }
+
+  document.getElementById("fileTable").innerHTML = table
+}
+
+function renderTableElement(item){
+  return `<tr>
+            <td>${item.name}</td>
+            <td><a href="<%= config[:ipfs_gateway] %>/${item.path}">Download</a></td>
+            <td>${item.img ? `<a onclick="showModal('${item.img}')">Picture</a>` : ""}</td> 
+          </tr>`
 }
 
 // Get the modal

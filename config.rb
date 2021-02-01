@@ -1,6 +1,8 @@
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
+config[:ipfs_gateway] = "https://cloudflare-ipfs.com/ipfs/"
+
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
 end
