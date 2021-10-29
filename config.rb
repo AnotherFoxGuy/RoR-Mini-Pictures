@@ -1,11 +1,7 @@
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
 
-config[:ipfs_gateway] = "https://cloudflare-ipfs.com/ipfs/"
-
-activate :autoprefixer do |prefix|
-  prefix.browsers = "last 2 versions"
-end
+config[:cdn_url] = "https://cdn.anotherfoxguy.com/repo-backup"
 
 data.mini_pictures.each_slice(100).each_with_index do |list, i|
   proxy "/page_#{i}.html", "/page.html", locals: { mini_pictures: list, index: i, max: 29 }, ignore: true

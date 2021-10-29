@@ -69,7 +69,7 @@ function searchFiles() {
 function renderTableElement(item){
   return `<tr>
             <td>${item.name}</td>
-            <td><a href="<%= config[:ipfs_gateway] %>/${item.path}">Download</a></td>
+            <td><a href="<%= config[:cdn_url] %>/${item.path}">Download</a></td>
             <td>${item.img ? `<a onclick="showModal('${item.img}')">Picture</a>` : ""}</td> 
           </tr>`
 }
