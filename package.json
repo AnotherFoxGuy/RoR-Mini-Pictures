@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "fuse.js": "^6.4.6",
+    "fuse.js": "^7.0.0",
     "ipfs-core": "^0.18.0"
   }
 }
